@@ -35,9 +35,9 @@ First, make sure you have one of the following environment variables set (it doe
 
 Either in your current terminal session or in your root RC file (e.g. `.bashrc`), add the following:
 ```
-export WEB3_ALCHEMY_PROJECT_ID=MY_API_TOKEN
+export WEB3_POKT_PROJECT_ID=MY_API_TOKEN
 ```
-To use the Alchemy provider plugin in most commands, set it via the `--network` option:
+To use the Pokt provider plugin in most commands, set it via the `--network` option:
 ```
 ape console --network ethereum:goerli:pokt
 ```
