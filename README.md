@@ -1,6 +1,6 @@
-# <PROJECT_NAME>
+# Ape Pokt Plugin
 
-TODO: Description
+Pokt Provider plugin for Ethereum-based networks.
 
 ## Dependencies
 
@@ -13,7 +13,7 @@ TODO: Description
 You can install the latest release via [`pip`](https://pypi.org/project/pip/):
 
 ```bash
-pip install <PYPI_NAME>
+pip install ape-pokt
 ```
 
 ### via `setuptools`
@@ -21,15 +21,26 @@ pip install <PYPI_NAME>
 You can clone the repository and use [`setuptools`](https://github.com/pypa/setuptools) for the most up-to-date version:
 
 ```bash
-git clone https://github.com/ApeWorX/<PYPI_NAME>.git
-cd <PYPI_NAME>
+git clone https://github.com/ApeWorX/ape-pokt.git
+cd ape-pokt
 python3 setup.py install
 ```
 
 ## Quick Usage
 
-TODO: Describe library overview in code
+First, make sure you have one of the following environment variables set (it doesn't matter which one):
 
+* `WEB3_POKT_PROJECT_ID`
+* `WEB3_POKT_API_KEY`
+
+Either in your current terminal session or in your root RC file (e.g. `.bashrc`), add the following:
+```
+export WEB3_ALCHEMY_PROJECT_ID=MY_API_TOKEN
+```
+To use the Alchemy provider plugin in most commands, set it via the `--network` option:
+```
+ape console --network ethereum:goerli:pokt
+```
 ## Development
 
 This project is in development and should be considered a beta.
