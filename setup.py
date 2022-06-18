@@ -7,13 +7,15 @@ extras_require = {
         "pytest>=6.0,<7.0",  # Core testing package
         "pytest-xdist",  # multi-process runner
         "pytest-cov",  # Coverage analyzer plugin
+        "pytest-mock",  # For creating mocks
         "hypothesis>=6.2.0,<7.0",  # Strategy-based fuzzer
     ],
     "lint": [
-        "black>=21.10b0,<22.0",  # auto-formatter and linter
-        "mypy>=0.910,<1.0",  # Static type analyzer
-        "flake8>=3.8.3,<4.0",  # Style linter
-        "isort>=5.9.3,<6.0",  # Import sorting linter
+        "black>=22.3.0,<23.0",  # auto-formatter and linter
+        "mypy>=0.961,<1.0",  # Static type analyzer
+        "types-requests",  # NOTE: Needed due to mypy typeshed
+        "flake8>=4.0.1,<5.0",  # Style linter
+        "isort>=5.10.1,<6.0",  # Import sorting linter
     ],
     "release": [  # `release` GitHub Action job uses this
         "setuptools",  # Installation tool
@@ -21,7 +23,7 @@ extras_require = {
         "twine",  # Package upload tool
     ],
     "dev": [
-        "commitizen",  # Manage commits and publishing releases
+        "commitizen>=2.19,<2.20",  # Manage commits and publishing releases
         "pre-commit",  # Ensure that linters are run prior to commiting
         "pytest-watch",  # `ptw` test watcher/runner
         "IPython",  # Console for interacting
@@ -45,7 +47,7 @@ setup(
     name="ape-pokt",
     use_scm_version=True,
     setup_requires=["setuptools_scm"],
-    description="""ape-pokt: Pokt Provider plugin for ethereum-based networks""",
+    description="""ape-pokt: Pokt Provider plugins for Ethereum-based networks""",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="ApeWorX Ltd.",
@@ -53,9 +55,12 @@ setup(
     url="https://github.com/ApeWorX/ape-pokt",
     include_package_data=True,
     install_requires=[
+        "eth-ape>=0.3.0,<0.4.0",
+        "web3",  # Get web3 version from ape
         "importlib-metadata ; python_version<'3.8'",
-    ],  # NOTE: Add 3rd party libraries here
-    python_requires=">=3.7,<4",
+        "requests",
+    ],
+    python_requires=">=3.7.2,<4",
     extras_require=extras_require,
     py_modules=["ape_pokt"],
     license="Apache-2.0",
@@ -64,7 +69,7 @@ setup(
     packages=find_packages(exclude=["tests", "tests.*"]),
     package_data={"ape_pokt": ["py.typed"]},
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Apache Software License",
         "Natural Language :: English",
@@ -74,5 +79,6 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
     ],
 )
