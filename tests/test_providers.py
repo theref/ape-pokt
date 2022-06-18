@@ -1,15 +1,19 @@
 from pathlib import Path
+
 import pytest
 from ape import networks
 from ape.api import NetworkAPI
 from ape.api.config import PluginConfig
-from ape_pokt.providers import PoktEthereumProvider, MissingProjectKeyError
+
+from ape_pokt.providers import MissingProjectKeyError, PoktEthereumProvider
+
 
 @pytest.fixture
 def missing_token(mocker):
     mock = mocker.patch("os.environ.get")
     mock.return_value = None
     return mock
+
 
 @pytest.fixture
 def mock_network(mocker):
@@ -33,6 +37,7 @@ def pokt_provider(mock_network, mock_config) -> PoktEthereumProvider:
         data_folder=Path("."),
         provider_settings={},
     )
+
 
 def test_when_no_api_key_raises_error(missing_token, pokt_provider):
     with pytest.raises(MissingProjectKeyError) as err:

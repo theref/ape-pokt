@@ -1,10 +1,8 @@
 import os
-from typing import Any, Dict, Iterator
+from typing import Dict
 
 from ape.api import UpstreamProvider, Web3Provider
 from ape.exceptions import ContractLogicError, ProviderError, VirtualMachineError
-from evm_trace import CallTreeNode, ParityTraceList, TraceFrame, get_calltree_from_parity_trace
-from requests import HTTPError
 from web3 import HTTPProvider, Web3  # type: ignore
 from web3.exceptions import ContractLogicError as Web3ContractLogicError
 from web3.gas_strategies.rpc import rpc_gas_price_strategy
