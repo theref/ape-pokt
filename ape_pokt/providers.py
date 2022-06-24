@@ -48,7 +48,7 @@ class PoktEthereumProvider(Web3Provider, UpstreamProvider):
         if not key:
             raise MissingProjectKeyError
 
-        network_uri = f"https://eth-{self.network.name}.gateway.pokt.network/v1/{key}"
+        network_uri = f"https://eth-{self.network.name}.gateway.pokt.network/v1/lb/{key}"
         self.network_uris[network_name] = network_uri
         return network_uri
 
