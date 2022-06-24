@@ -50,9 +50,11 @@ def pokt_provider(mock_network, mock_config) -> PoktEthereumProvider:
         provider_settings={},
     )
 
+
 @pytest.fixture
 def mock_transaction(mocker):
     return mocker.MagicMock(spec=TransactionAPI)
+
 
 @pytest.fixture
 def mock_web3(mocker):
