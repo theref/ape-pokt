@@ -40,8 +40,7 @@ class PoktEthereumProvider(Web3Provider, UpstreamProvider):
 
         key = None
         for env_var_name in _ENVIRONMENT_VARIABLE_NAMES:
-            env_var = os.environ.get(env_var_name)
-            if env_var:
+            if env_var := os.environ.get(env_var_name):
                 key = env_var
                 break
 
@@ -87,12 +86,11 @@ class PoktEthereumProvider(Web3Provider, UpstreamProvider):
         if message.startswith(message_prefix):
             message = message.replace(message_prefix, "")
 
-            if ":" in message:
-                # Was given a revert message
-                message = message.split(":")[-1].strip()
-                return ContractLogicError(revert_message=message)
-            else:
+            if ":" not in message:
                 # No revert message
                 return ContractLogicError()
 
+            # Was given a revert message
+            message = message.split(":")[-1].strip()
+            return ContractLogicError(revert_message=message)
         return VirtualMachineError(message=message)
